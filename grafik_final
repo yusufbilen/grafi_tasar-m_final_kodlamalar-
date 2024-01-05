@@ -1,0 +1,95 @@
+<App Building Onramp>
+        Course Overview
+                Course Overview
+                bu alıştırmada videolar bulunmaktadır
+
+                Maze Generator Example
+                amaze => rastgele labirent oluşturmak ve görüntülemek amacı ile kullanılır
+
+        App Building Workflow
+                Design an app
+                    task1:
+                        axes => eksen bileşeni
+                        componet => matlabda bulunan anahtar kelimelerinin herhangi birini ifade eder
+                        library => programlama ve ya fonksyon kütüphanesi
+                    task2:
+                        Change the title from Title to Maze => eksen başlığını title den maze ye çevirmemizi söylemektedir
+                    task3:
+                        In the Labels section of the Axes tab, delete the XLabel.String and YLabel.String properties => x ve y eksenindeki eksen isimlerini silmemi istemektedir
+                        Then scroll down to locate the Ticks section. Delete the XTick and YTick properties. The tick labels will get automatically removed => x ve y ekseninde sayısal değerleri silmemi istemektedir
+                    task4:
+                        In the Box Styling section of the Axes tab, set the Box property to true by checking the checkbox => Box Styling alanına gelip axes bölümünün Box kutucuğuna tik işareti atmamızı istemektedir
+                    task5:
+                        Add a Button component to the canvas. Change the buttons text from Button to New Maze. => burada bir buton eklememi istemektedir ve bu butonun ismini new maze ile değiştirmemi istemektedir
+                    task6:
+                        Click  Run to save and run the app. Use the default file name.he app will run in a separate window. Press submit while the app window is open. => burada yaptığım taslağı çalıştırmamı söylemektedir
+
+                Write Callbacks
+                    task1:
+                    Add a button pushed callback to the new maze button. The function should automatically be named NewMazeButtonPushed => bu çalışmada oluşturduğum butona her bastığımda fonksyon çalışmaya başladı bende ki çalışma şekli her butona tıkladığımda renk değiştirmesi oldu
+                    task2:
+                    NewMazeButtonPushed => bu modülde yeni bir geri çağrı eklememizi istemektedir
+                    task3:
+                    [wall,wx,wy] = amaze();
+                    plot(wall,"XData",wx,"YData",wy,...
+                    "NodeLabel",[]) 
+                    bu kod ne işe yaramaktadır
+                    açıklaması => bu kod NewMazeButtonPushed burada oluşturduğumuz geri çağrı butonuna eklememizi ve bu geri çağrı butonuna bastığımızda UIAxes burada ki grafikte labirent oluşturmamızı sağlamaktadır
+                    task4:
+                    title(app.UIAxes, "Maze") => burada UIAxes grafiğini  çalıştırdığımızda başlığını Maze olarak belirlememizi sağlamaktadır
+                    axis("equal") => bu kod ile oluşturulan labirent eksenler üzerinde eşit boylarda olmasını sağlamaktadır yani kısacası kare olmasını sağlamaktadır
+                    Copy the axis plotting code above into the NewMazeButtonPushed function and modify the code to use the UIAxes component => burada verdiği kodu NewMazeButtonPushed butonunun içine eklememizi ve grafikle ilişkilendirmemizi daha sonra butona basıldığında eksenlerin eşitlenmesinin gerektiğini söylemektedir
+                 
+                 Share an App
+                    burada videolar bulunmaktadır.
+            
+            Add App Behavior
+                Add Different Componets
+                    task1:
+                    Add a Spinner component to the app = bu alıştırmada bir spinner eklememizi ve bunun sayı aralığının 1 ia 5 arasında birer olacak şekilde artmasını sağlamamızı istemektedir
+                    task2:
+                    Change the label’s text from Spinner to Grid Size => yaptığımız spinnerin adını Grid Size ile değiştimemizi söylemektedir
+                    task3:
+                    Change the limits so that the spinner goes from 5 to 30 with a step size of 5 => yaptığımız Grid Size işlemli fonksyonun bu sefer 5 ila 30 arasında olmasını ve beşer olacak şekilde artacak şekilde ayarlamamızı söylemektedir
+                    task4:
+                    Set the value changed callback of the spinner to the NewMazeButtonPushed function => burada spinnere girilen girdinin NewMazeButtonPushed butonu ile eşlenmesini ve girilen sayının ve ya değerin bu butona tıklandığında eksene yansıması nı sağlamamızı istemektedir
+                    task5:
+                    [wall,wx,wy] = amaze(gridsize) => amaze grafiğin değerlerini girmemizi sağlamaktadır
+                    v = app.Component.Value => bu kodda değeri giriş değerini elde etmemizi sağlamaktadır
+                    In the callback function, get the spinner's value and call the amaze function with the spinner's value as an input => burada spinner değerinin Maze yani grafikte gözükmesini sağlamaktadır
+                    Change the name of the NewMazeButtonPushed callback to NewMaze => NewMazeButtonPushed adlı butonumuzu NewMaze adında yeni bir isim ile değiştirmemizi istemektedir
+               
+                Use App Data
+                    task1:
+                    Create a new property named Property => buarada property adına yeni bir özellik açmamızı söylemektedir
+                    task2:
+                    Change property name from Property to slen => burada eklediğimiz yeni özellik olan Property özelliğini slen adıyla değiştirmemizi istemektedir
+                    task3:
+                    app.propname = val => bu kod bir nesnenin özelliğine bir değer atamak anlamına gelmektedir
+                    When the length of solution is calculated, store the result in the slen property => eklediğimiz bu kod ile sonuç hesaplandığında slen özelliğinin içine sağlamaktadır
+                    task3:
+                    Create a new property called solplot. When the solution is plotted store the result of the plot command in the solplot property => burada yeni bir özellik açmamızı ve çizilen labirentin bu özelliğin içinde saklanmasını daha sonra kullanılmak istendiğinde bu özellik kullanılarak çağrılacağını söylemektedir
+
+                Create Responsive Componets
+                    task1:
+                    In Design View, navigate to the Interactivity properties of the check box and disable it => buarada onay kutusunun özelliğini devredışı bırakmamızı istemektedir
+                    task2:
+                    Enable the check box in the NewMaze function => onay kutusunu New Maze fonksyonunda etkinleştirmemizi söylemektedir
+                    task3:
+                    Add a new button component to the app and change its text to Reset => burada yeni bir buton eklememizi ve elde ettiğimiz sonucu sıfırlamasını sağlamasını istemektedir
+                    task4:
+                    Create a button pushed callback for the reset button. The function should automatically be named ResetButtonPushed => sıfırlama butonuna basıldığında geri çağrı fonksyonu oluşturmamızı ve adını otomatik olarak ResetButtonPushed olarak atamamızı istemektedir
+                    task5:
+                    cla(ax) => bu fonksyon belirlenen eksenin içini temizlemeye yaramaktadır
+                    cla(app.UIAxes) => eksen temizlenir
+                    title(app.UIAxes, 'Maze') => eksen başlığı Maze olarak ayarlanır
+                    app.SolutionCheckBox.Enable = 'off' => onay kutusu devre dışı bırakılır
+                    Fruther Practice
+                    app.GridSizeSpinner.Value = 5 => GridSizeSpinner adlı bileşenin değeri 5 olarak ayarlıyor
+                    app.BranchingModeButtonGroup.SelectedObject = app.firstButton => BranchingModeButtonGroup adlı bir grup düğmesindeki seçili nesneyi app.firstButton adlı bir nesne olarak belirler
+                
+                Responsive Apps
+                    task1:
+                    Drag a Grid Layout component onto the app => bir ızgara modülünü uygulamaya sürüklememizi söylemektedir
+                    task2:
+                    Configure the grid layout. Change the third column from Weighted to Fit => ızgarayı ayarladıktan sonra üçüncü sutunnda Weighted yerine fit olarak düzenlememizi istemektedir           
