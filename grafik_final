@@ -55,7 +55,7 @@
                     burada videolar bulunmaktadır.
             
             Add App Behavior
-                Add Different Componets
+               Add App BehaviorAdd Different Components(1/3) Value Changed Callback
                     task1:
                     Add a Spinner component to the app = bu alıştırmada bir spinner eklememizi ve bunun sayı aralığının 1 ia 5 arasında birer olacak şekilde artmasını sağlamamızı istemektedir
 
@@ -72,10 +72,55 @@
                     [wall,wx,wy] = amaze(gridsize) => amaze grafiğin değerlerini girmemizi sağlamaktadır
                     v = app.Component.Value => bu kodda değeri giriş değerini elde etmemizi sağlamaktadır
                     In the callback function, get the spinner's value and call the amaze function with the spinner's value as an input => burada spinner değerinin Maze yani grafikte gözükmesini sağlamaktadır
+                   
+                    task6:
                     Change the name of the NewMazeButtonPushed callback to NewMaze => NewMazeButtonPushed adlı butonumuzu NewMaze adında yeni bir isim ile değiştirmemizi istemektedir
 
+                                Bu aşamanın tamamında düzenlediğimiz kodlar şu şekildedir
+                                % Spinner'dan değeri al
+                                    gridSize = app.GridSizeSpinner.Value;
+                                    
+                                    % Yeni bir labirent oluştur
+                                    [wall,wx,wy] = amaze(gridSize);
+                                    
+                                    % Labirenti UIAxes bileşenine çiz
+                                    plot(app.UIAxes, wall, "XData", wx, "YData", wy, "NodeLabel", []);
+                                    
+                                    % Eksenin özelliklerini ayarla
+                                    axis(app.UIAxes, "equal"); % Eksenleri orantılı yapar
+                                    title(app.UIAxes, "Maze"); % Grafik başlığını belirler 
 
-                Use App Data
+
+
+          Add Different Components(2/3) Button Group Component
+                        task1:
+                        Add a Toggle Button Group component to the app. You can resize the app's canvas to make space for the new component. => Kütüphaneden grup buton özelliğini çekip uygulamamıza eklememizi istemektedir
+
+                        task2:
+                        Name the button group Branching Mode and name buttons first, middle, and last. => aldığımız grup b utonlarının başlık ismini Branching Mode ile değiştirip sırasıyla diğer butonlarada first, middle, ve last bu isimleri atamamızı istemektedir
+
+                        task3:
+                        Change the selection changed button callback of the button group to the NewMaze function. => bu butonlara geri yanıt fonksyonu eklememizi istemektedir
+
+                        task4:
+                            % Spinner'dan değeri al
+                            gridSize = app.GridSizeSpinner.Value;
+                            % Seçili olan bmode al
+                            bmode = app.BranchingModeButtonGroup.SelectedObject.Text;
+                        
+        Add Different Components(3/3) Checkbox Component               
+                task1:
+                Add a Check Box component to the app => kütüphaneden uygulamaya onay kutusunu eklememizi istemektedir
+
+                task2:
+                Change the text from Check Box to Display solution? => onay kutusunun ismini değiştirmemizi istemektedi 
+
+                task3:
+                Create a value changed callback for the check box. The function should automatically be named DisplaysolutionCheckBoxValueChanged => eylem yapacak geri dönüş fanksyonu tanımlamamızı istemektedir
+
+
+
+                Use App Data(2/3) Store App Data
                     task1:
                     Create a new property named Property => buarada property adına yeni bir özellik açmamızı söylemektedir
 
@@ -88,6 +133,57 @@
 
                     task4:
                     Create a new property called solplot. When the solution is plotted store the result of the plot command in the solplot property => burada yeni bir özellik açmamızı ve çizilen labirentin bu özelliğin içinde saklanmasını daha sonra kullanılmak istendiğinde bu özellik kullanılarak çağrılacağını söylemektedir
+        
+
+                                Burada düzenlediğim başlıca kodlamalar
+                                    
+                                % Spinner'dan değeri al
+                                gridSize = app.GridSizeSpinner.Value; % Spinner'dan seçilen labirent büyüklüğünü alır
+                                
+                                % Seçili olan branching mode'u al
+                                branchMode = app.BranchingModeButtonGroup.SelectedObject.Text; % Seçili olan branching mode'un metin değerini alır
+                                
+                                % Yeni bir labirent oluştur
+                                [wall, wx, wy, sol, sx, sy] = amaze(gridSize, branchMode); % Belirlenen büyüklük ve branching mode'a göre labirenti oluşturur ve gerekli değişkenlere atar
+                                
+                                % Çözümün uzunluğunu hesapla ve app.slen özelliğine ata
+                                app.slen = numedges(sol); % Oluşturulan çözümün kenar sayısını hesaplar ve app.slen özelliğine atar
+                                
+                                % Labirenti UIAxes bileşenine çiz
+                                plot(app.UIAxes, wall, "XData", wx, "YData", wy, "NodeLabel", []); % Labirenti çizer
+                                axis(app.UIAxes, "equal"); % Eksenleri orantılı yapar
+                                
+                                % Çözümü görselleştir
+                                hold(app.UIAxes, "on"); % Yeni grafikleri çizmeden önce mevcut grafiği korur
+                                plot(app.UIAxes, sol, "XData", sx, "YData", sy, "NodeLabel", []); % Çözümü çizer
+                                hold(app.UIAxes, "off"); % Grafik çizimini sonlandırır ve sonraki çizimler için korumayı kapatır
+                                % Çözümü görselleştir ve solplot özelliğine ata
+                                app.solplot = plot(app.UIAxes, sol, "XData", sx, "YData", sy, "NodeLabel", []);
+
+                Add App BehaviorUse App Data(3/3) Add Logic
+                                task1;
+                                % DisplaysolutionCheckBox bileşeninden değeri alır
+                                value = app.DisplaysolutionCheckBox.Value;
+                                
+                                % Eğer DisplaysolutionCheckBox işaretlenmişse (value = true),
+                                % çözümü görünür yapar ve başlıkta çözümün uzunluğunu gösterir
+                                if value
+                                    % Çözüm grafiğini görünür yapar
+                                    app.solplot.Visible = true;
+                                    
+                                    % Başlıkta çözümün uzunluğunu gösterir
+                                    title(app.UIAxes, "length = " + app.slen);
+                                end
+
+                        task2:
+                            % DisplaysolutionCheckBox işaretlenmemişse (value = false),
+                            % çözümü görünmez yapar ve başlıkta sadece "Maze" gösterir
+                            app.solplot.Visible = false; % Çözüm grafiğini görünmez yapar
+                            title(app.UIAxes, "Maze"); % Sadece "Maze" başlığını gösterir
+
+                        task3:
+                                % DisplaysolutionCheckBox bileşeninin değer değişikliği olayı için işleyici fonksiyon
+                                DisplaysolutionCheckBoxValueChanged(app,[])
 
                 Create Responsive Componets
                     task1:
@@ -95,18 +191,21 @@
 
                     task2:
                     Enable the check box in the NewMaze function => onay kutusunu New Maze fonksyonunda etkinleştirmemizi söylemektedir
+                        app.DisplaysolutionCheckBox.Enable = true;
+                        % DisplaysolutionCheckBox bileşeninin etkinlik durumunu true (aktif) olarak ayarlar
 
                     task3:
-                    Add a new button component to the app and change its text to Reset => burada yeni bir buton eklememizi ve elde ettiğimiz sonucu sıfırlamasını sağlamasını istemektedir
+                    Add a new button component to the app and change its text to Reset => burada yeni bir buton eklememizi ve bu butonun ismini reset yapmamızı söylemektedir
 
                     task4:
-                    Create a button pushed callback for the reset button. The function should automatically be named ResetButtonPushed => sıfırlama butonuna basıldığında geri çağrı fonksyonu oluşturmamızı ve adını otomatik olarak ResetButtonPushed olarak atamamızı istemektedir
+                    Create a button pushed callback for the reset button. The function should automatically be named ResetButtonPushed => reset butonuna basıldığında geri çağrı fonksyonu oluşturmamızı ve adını otomatik olarak ResetButtonPushed olarak atamamızı istemektedir
 
                     task5:
                     cla(ax) => bu fonksyon belirlenen eksenin içini temizlemeye yaramaktadır
                     cla(app.UIAxes) => eksen temizlenir
                     title(app.UIAxes, 'Maze') => eksen başlığı Maze olarak ayarlanır
                     app.SolutionCheckBox.Enable = 'off' => onay kutusu devre dışı bırakılır
+
 
                     Fruther Practice
                     app.GridSizeSpinner.Value = 5 => GridSizeSpinner adlı bileşenin değeri 5 olarak ayarlıyor
