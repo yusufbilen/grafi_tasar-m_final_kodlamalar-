@@ -1,14 +1,14 @@
 <App Building Onramp>
         Course Overview
-                Course Overview
-                bu alıştırmada videolar bulunmaktadır
-
-                Maze Generator Example
-                amaze => rastgele labirent oluşturmak ve görüntülemek amacı ile kullanılır
+                        Course Overview
+                        bu alıştırmada videolar bulunmaktadır
+        
+                        Maze Generator Example
+                        amaze => rastgele labirent oluşturmak ve görüntülemek amacı ile kullanılır
 
         App Building Workflow
                 Design an app
-                    task1:
+                     task1:
                         axes => eksen bileşeni
                         componet => matlabda bulunan anahtar kelimelerinin herhangi birini ifade eder
                         library => programlama ve ya fonksyon kütüphanesi
@@ -109,14 +109,14 @@
                             bmode = app.BranchingModeButtonGroup.SelectedObject.Text;
                         
         Add Different Components(3/3) Checkbox Component               
-                task1:
-                Add a Check Box component to the app => kütüphaneden uygulamaya onay kutusunu eklememizi istemektedir
-
-                task2:
-                Change the text from Check Box to Display solution? => onay kutusunun ismini değiştirmemizi istemektedi 
-
-                task3:
-                Create a value changed callback for the check box. The function should automatically be named DisplaysolutionCheckBoxValueChanged => eylem yapacak geri dönüş fanksyonu tanımlamamızı istemektedir
+                        task1:
+                        Add a Check Box component to the app => kütüphaneden uygulamaya onay kutusunu eklememizi istemektedir
+        
+                        task2:
+                        Change the text from Check Box to Display solution? => onay kutusunun ismini değiştirmemizi istemektedi 
+        
+                        task3:
+                        Create a value changed callback for the check box. The function should automatically be named DisplaysolutionCheckBoxValueChanged => eylem yapacak geri dönüş fanksyonu tanımlamamızı istemektedir
 
 
 
@@ -174,50 +174,50 @@
                                     % Başlıkta çözümün uzunluğunu gösterir
                                     title(app.UIAxes, "length = " + app.slen);
                                 end
-
-                        task2:
-                            % DisplaysolutionCheckBox işaretlenmemişse (value = false),
-                            % çözümü görünmez yapar ve başlıkta sadece "Maze" gösterir
-                            app.solplot.Visible = false; % Çözüm grafiğini görünmez yapar
-                            title(app.UIAxes, "Maze"); % Sadece "Maze" başlığını gösterir
-
-                        task3:
-                                % DisplaysolutionCheckBox bileşeninin değer değişikliği olayı için işleyici fonksiyon
-                                DisplaysolutionCheckBoxValueChanged(app,[])
+        
+                                task2:
+                                    % DisplaysolutionCheckBox işaretlenmemişse (value = false),
+                                    % çözümü görünmez yapar ve başlıkta sadece "Maze" gösterir
+                                    app.solplot.Visible = false; % Çözüm grafiğini görünmez yapar
+                                    title(app.UIAxes, "Maze"); % Sadece "Maze" başlığını gösterir
+        
+                                task3:
+                                        % DisplaysolutionCheckBox bileşeninin değer değişikliği olayı için işleyici fonksiyon
+                                        DisplaysolutionCheckBoxValueChanged(app,[])
 
                 Create Responsive Componets
-                    task1:
-                    In Design View, navigate to the Interactivity properties of the check box and disable it => buarada onay kutusunun özelliğini devredışı bırakmamızı istemektedir
-
-                    task2:
-                    Enable the check box in the NewMaze function => onay kutusunu New Maze fonksyonunda etkinleştirmemizi söylemektedir
-                        app.DisplaysolutionCheckBox.Enable = true;
-                        % DisplaysolutionCheckBox bileşeninin etkinlik durumunu true (aktif) olarak ayarlar
-
-                    task3:
-                    Add a new button component to the app and change its text to Reset => burada yeni bir buton eklememizi ve bu butonun ismini reset yapmamızı söylemektedir
-
-                    task4:
-                    Create a button pushed callback for the reset button. The function should automatically be named ResetButtonPushed => reset butonuna basıldığında geri çağrı fonksyonu oluşturmamızı ve adını otomatik olarak ResetButtonPushed olarak atamamızı istemektedir
-
-                    task5:
-                    cla(ax) => bu fonksyon belirlenen eksenin içini temizlemeye yaramaktadır
-                    cla(app.UIAxes) => eksen temizlenir
-                    title(app.UIAxes, 'Maze') => eksen başlığı Maze olarak ayarlanır
-                    app.SolutionCheckBox.Enable = 'off' => onay kutusu devre dışı bırakılır
+                            task1:
+                            In Design View, navigate to the Interactivity properties of the check box and disable it => buarada onay kutusunun özelliğini devredışı bırakmamızı istemektedir
+        
+                            task2:
+                            Enable the check box in the NewMaze function => onay kutusunu New Maze fonksyonunda etkinleştirmemizi söylemektedir
+                                app.DisplaysolutionCheckBox.Enable = true;
+                                % DisplaysolutionCheckBox bileşeninin etkinlik durumunu true (aktif) olarak ayarlar
+        
+                            task3:
+                            Add a new button component to the app and change its text to Reset => burada yeni bir buton eklememizi ve bu butonun ismini reset yapmamızı söylemektedir
+        
+                            task4:
+                            Create a button pushed callback for the reset button. The function should automatically be named ResetButtonPushed => reset butonuna basıldığında geri çağrı fonksyonu oluşturmamızı ve adını otomatik olarak ResetButtonPushed olarak atamamızı istemektedir
+        
+                            task5:
+                            cla(ax) => bu fonksyon belirlenen eksenin içini temizlemeye yaramaktadır
+                            cla(app.UIAxes) => eksen temizlenir
+                            title(app.UIAxes, 'Maze') => eksen başlığı Maze olarak ayarlanır
+                            app.SolutionCheckBox.Enable = 'off' => onay kutusu devre dışı bırakılır
 
 
                     Fruther Practice
-                    app.GridSizeSpinner.Value = 5 => GridSizeSpinner adlı bileşenin değeri 5 olarak ayarlıyor
-                    app.BranchingModeButtonGroup.SelectedObject = app.firstButton => BranchingModeButtonGroup adlı bir grup düğmesindeki seçili nesneyi app.firstButton adlı bir nesne olarak belirler
-
-
-                 Responsive Apps
-                    task1:
-                    Drag a Grid Layout component onto the app => bir ızgara modülünü uygulamaya sürüklememizi söylemektedir
-
-                    task2:
-                    Configure the grid layout. Change the third column from Weighted to Fit => ızgarayı ayarladıktan sonra üçüncü sutunnda Weighted yerine fit olarak düzenlememizi istemektedir 
+                            app.GridSizeSpinner.Value = 5 => GridSizeSpinner adlı bileşenin değeri 5 olarak ayarlıyor
+                            app.BranchingModeButtonGroup.SelectedObject = app.firstButton => BranchingModeButtonGroup adlı bir grup düğmesindeki seçili nesneyi app.firstButton adlı bir nesne olarak belirler
+        
+        
+                Responsive Apps
+                            task1:
+                            Drag a Grid Layout component onto the app => bir ızgara modülünü uygulamaya sürüklememizi söylemektedir
+        
+                            task2:
+                            Configure the grid layout. Change the third column from Weighted to Fit => ızgarayı ayarladıktan sonra üçüncü sutunnda Weighted yerine fit olarak düzenlememizi istemektedir 
 
         Conclusion
                 Burada sadece vidolar bulunmaktadır
